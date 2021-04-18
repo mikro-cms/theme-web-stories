@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: roboto, arial, sans-serif;
+}
+
+body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#Wrapper {
+    display: grid;
+    grid-template-columns: repeat(120, 1fr);
+    grid-template-rows: 5rem auto;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+}
+#Header {
+    display: grid;
+    grid-column: 1 / span 120;
+    grid-row: 1;
+    z-index: 2;
+    grid-template-columns: repeat(120, 1fr);
+    grid-template-rows: 2rem 3rem;
+}
+#Header .Loadbar {
+    display: flex;
+    grid-column: 1 / span 120;
+    grid-row: 1;
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+    justify-content: center;
+    align-items: center;
+}
+#Header .Loadbar div {
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
+    flex-grow: 1;
+    overflow: hidden;
+    height: 0.35rem;
+    background: #909090;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+@keyframes test {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+#Header .Loadbar div.active::before {
+    display: block;
+    content: '';
+    height: 100%;
+    width: 0%;
+    background: #666666;
+    animation: test 10s linear infinite normal;
+}
+#Header .Loadbar div.passed::before {
+    display: block;
+    content: '';
+    height: 100%;
+    width: 100%;
+    background: #666666;
+}
+#Header .Logo {
+    display: flex;
+    grid-column: 1 / span 15;
+    grid-row: 2;
+    justify-content: center;
+    align-items: center;
+}
+#Header .Logo img {
+    width: 2rem;
+    height: 2rem;
+    overflow: hidden;
+    background: #FFFFFF;
+    border: 0.1rem solid #F0F0F0;
+    border-radius: 100%;
+}
+#Header .Title {
+    display: flex;
+    grid-column: 16 / span 110;
+    grid-row: 2;
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: normal;
+}
+#Content {
+    display: grid;
+    grid-column: 1 / span 120;
+    grid-row: 1 / span 2;
+    grid-template-columns: repeat(120, 1fr);
+    grid-template-rows: auto;
+}
+#Content .Story {
+    display: flex;
+    grid-column: 1 / span 120;
+    grid-row: 1;
+    z-index: 0;
+    padding-top: 3rem;
+    padding-right: 10%;
+    padding-bottom: 3rem;
+    padding-left: 10%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#Content .Story.hide {
+    display: none;
+}
+#Content .Story.red {
+    background: #FF0000;
+}

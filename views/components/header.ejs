@@ -1,0 +1,11 @@
+<% const header = components.header.component_options; %>
+
+<div id="Header">
+  <div class="Loadbar" id="Loadbar">
+    <!-- load bar -->
+  </div>
+  <div class="Logo">
+    <img src="<%= assets('/images/' + header.logo.name + header.logo.extension) %>" />
+  </div>
+  <h1 class="Title"><%= header.title %></h1>
+</div>

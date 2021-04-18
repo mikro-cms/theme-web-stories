@@ -1,0 +1,22 @@
+{
+  "name": "@mikro-cms/theme-web-stories",
+  "version": "0.0.1",
+  "description": "Theme mikro-cms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikro-cms/theme-web-stories.git"
+  },
+  "keywords": [
+    "mikro-cms"
+  ],
+  "author": "mikro-cms",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikro-cms/theme-web-stories/issues"
+  },
+  "homepage": "https://github.com/mikro-cms/theme-web-stories#readme"
+}

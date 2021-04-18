@@ -1,0 +1,12 @@
+<% const content = components.content.component_options; %>
+
+<div id="Content">
+  <% for (var story of content.stories) { %>
+  <div class="<%= 'Story ' + story.background %> hide">
+    <img class="Cover" src="<%= assets('/images/' + story.img.name + story.img.extension) %>" />
+    <div class="Content">
+      <p><%= story.content %></p>
+    </div>
+  </div>
+  <% } %>
+</div>
