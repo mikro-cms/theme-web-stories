@@ -1,5 +1,5 @@
 // Theme componenets
-const components = {
+const componentDefault = {
   header: {
     component_name: 'header',
     component_options: {
@@ -37,5 +37,5 @@ const components = {
 };
 
 module.exports = {
-  components
+  default: componentDefault
 };
