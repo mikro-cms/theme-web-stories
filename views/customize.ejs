@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= page.page_title; %></title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="<%= assets('/css/customize.css') %> ">
+</head>
+<body>
+  <div id="Wrapper">
+    <div id="Home">
+      <div id="HomeAddStatus">
+        <div class="Photo">
+          <img src="">
+          <button class="material-icons" id="BtnHomeAddStatus">add</button>
+        </div>
+        <h1 class="Title">
+          <b>My Status</b>
+          <span>Tap to add status update</span>
+        </h1>
+      </div>
+
+      <div id="HomeTypes">
+        <button id="BtnHomeTypeLast" type="button">
+          <i class="material-icons">replay_30</i>
+          <span>Last Status</span>
+        </button>
+        <button id="BtnHomeTypeArchived" type="button">
+          <i class="material-icons">bookmark</i>
+          <span>Archived Status</span>
+        </button>
+      </div>
+
+      <div id="HomeListStatus">
+        <!-- List Status -->
+      </div>
+    </div>
+
+    <div id="Status" style="display: none;">
+      <button id="BtnStatusClose">
+        <i class="material-icons">close</i>
+      </button>
+      <div id="StatusContent">
+        <img id="StatusImage" />
+        <p id="StatusText" contenteditable="true" placeholder="Type a status"></p>
+      </div>
+      <div id="StatusCaption">
+        <div id="StatusCaptionText">
+          <input id="InputStatusCaption" type="text" name="caption" style="display: none;">
+        </div>
+        <button id="BtnStatusPost" style="display: none;">
+          <i class="material-icons">send</i>
+        </button>
+      </div>
+      <div id="StatusCustom">
+        <button class="material-icons" id="BtnStatusCustomText">title</button>
+        <button class="material-icons" id="BtnStatusCustomColor">palette</button>
+        <div id="BtnStatusCustomImage">
+          <input id="InputStatusCustomImage" type="file">
+          <i class="material-icons">image</i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ENV = {
+      token: "<%= session.token %>",
+      apiUrl: "<%= url('/api/@mikro-cms/api-web-stories'); %>",
+      publicUrl: "<%= url(''); %>",
+      pageId: "<%= page._id %>"
+    };
+  </script>
+  <script src="<%= assets('/libs/petch/1.1.1.js') %>"></script>
+  <script src="<%= assets('/libs/moment/2.29.1.min.js') %>"></script>
+  <script src="<%= assets('/js/customize.js') %> "></script>
+</body>
+</html>

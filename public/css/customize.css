@@ -1,0 +1,349 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: roboto, Arial, Sans-serif;
+}
+
+#Wrapper {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+}
+
+#Home {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+#HomeAddStatus {
+  display: flex;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  align-items: center;
+  width: 100%;
+  height: 8rem;
+  background: #4F5B62;
+}
+#HomeAddStatus .Photo {
+  display: flex;
+  position: relative;
+  margin-right: 1rem;
+  width: 4rem;
+  height: 4rem;
+  background: #F0F0F0;
+  border-radius: 100%;
+}
+#HomeAddStatus .Photo button {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #5472D3;
+  font-size: 1rem;
+  color: #FFFFFF;
+  border-radius: 100%;
+  border: none;
+}
+#HomeAddStatus .Title {
+  display: flex;
+  flex-direction: column;
+  font-weight: normal;
+  color: #FFFFFF;
+}
+#HomeAddStatus .Title b {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: normal;
+}
+#HomeAddStatus .Title span {
+  font-size: 0.85rem;
+}
+
+#HomeTypes {
+  display: flex;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+  background: #F0F0F0;
+  border-bottom: 0.1rem solid #C0C0C0;
+}
+#HomeTypes button {
+  display: flex;
+  margin-right: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 2rem;
+  border: none;
+}
+#HomeTypes button i {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+  color: #0D47A1;
+}
+#HomeTypes button span {
+  font-size: 1rem;
+  color: #333333;
+}
+
+#HomeListStatus {
+  display: flex;
+  position: relative;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+@keyframes ListStatusLoading {
+  0% {
+    content: '.';
+  }
+  25% {
+    content: '..';
+  }
+  75% {
+    content: '...';
+  }
+  100% {
+    content: '';
+  }
+}
+#HomeListStatus .Loading {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background: #F0F0F0;
+}
+#HomeListStatus .LoadingText {
+  position: relative;
+}
+#HomeListStatus .LoadingText::after {
+  position: absolute;
+  content: '...';
+  font-size: 1rem;
+  color: #666666;
+  animation: ListStatusLoading 3s linear infinite normal;
+}
+#HomeListStatus .Item {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+}
+#HomeListStatus .Image {
+  display: flex;
+  margin-right: 1rem;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 5rem;
+  height: 5rem;
+  background: #F0F0F0;
+  border: 0.1rem solid #C0C0C0;
+  border-radius: 100%;
+}
+#HomeListStatus .Image img {
+  width: 100%;
+  height: auto;
+}
+#HomeListStatus .Image p {
+  font-size: 0.25rem;
+  color: #FFFFFF;
+}
+#HomeListStatus .Date {
+  padding-top: 1.3rem;
+  padding-bottom: 1.3rem;
+  flex-grow: 1;
+  font-size: 1rem;
+  color: #666666;
+  border-bottom: 0.1rem solid #F0F0F0;
+}
+
+#Status {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+}
+#BtnStatusClose {
+  display: flex;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1001;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #263238;
+  border: 0.1rem solid #333333;
+  border-radius: 100%;
+}
+#BtnStatusClose i {
+  font-size: 0.85rem;
+  color: #FFFFFF;
+}
+#StatusContent {
+  display: flex;
+  position: relative;
+  padding-top: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  background: #075E54;
+}
+#StatusImage {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  border: none;
+  outline: none;
+}
+#StatusText {
+  display: inline-block;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  min-width: 1.5rem;
+  max-width: 100%;
+  height: auto;
+  overflow: auto;
+  min-height: 1.5rem;
+  max-height: 100%;
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  text-align: center;
+  outline: none;
+  word-wrap: break-word;
+}
+#StatusText .Placeholder {
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: #FFFFFF;
+  opacity: 0.25;
+}
+#StatusCaption {
+  display: flex;
+  position: absolute;
+  right: 1rem;
+  left: 1rem;
+  bottom: 3.5rem;
+  z-index: 1000;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+#StatusCaptionText {
+  display: flex;
+  padding-top: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  flex-grow: 1;
+  width: auto;
+  height: auto;
+}
+#InputStatusCaption {
+  width: 100%;
+  min-height: 3rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  font-size: 1rem;
+  color: #333333;
+  border: 0.05rem solid #666666;
+  border-radius: 0.5rem;
+}
+#BtnStatusPost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  background: #FFFFFF;
+  border: 0.05rem solid #999999;
+  border-radius: 100%;
+}
+#BtnStatusPost i {
+  font-size: 1.5rem;
+  color: #333333;
+}
+#StatusCustom {
+  display: flex;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+  background: #263238;
+}
+#StatusCustom button {
+  margin-right: 1rem;
+  background: none;
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  border: none;
+}
+#BtnStatusCustomImage {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+#BtnStatusCustomImage input {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0;
+}
+#BtnStatusCustomImage i {
+  font-size: 1.5rem;
+  color: #FFFFFF;
+}
