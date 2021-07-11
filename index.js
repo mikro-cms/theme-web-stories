@@ -15,17 +15,7 @@ const componentDefault = {
   content: {
     component_name: 'content',
     component_options: {
-      stories: [
-        {
-          content: 'create your own history',
-          img: {
-            name: '0',
-            mime: 'image/jpg',
-            extension: '.jpg'
-          },
-          background: 'white'
-        }
-      ]
+      // no options
     }
   },
   footer: {
