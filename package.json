@@ -1,6 +1,6 @@
 {
   "name": "@mikro-cms/theme-web-stories",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Theme mikro-cms",
   "main": "index.js",
   "scripts": {
