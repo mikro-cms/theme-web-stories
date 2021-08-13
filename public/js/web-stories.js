@@ -122,7 +122,7 @@ function WebStories(options) {
 
     // pause story on space pressed
     window.addEventListener('keyup', function (e) {
-      if (e.code === 32) {
+      if (e.code === 'Space') {
         if (callNextStory === null) startStory();
         else pauseStory();
       }
