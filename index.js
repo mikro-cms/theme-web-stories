@@ -1,5 +1,25 @@
+// Theme data
+const defaultData = async function () {
+  let data = {
+    posts: null
+  };
+
+  this.req.query.type = 'lasted';
+
+  let apiWebStories = this.api('@mikro-cms/api-web-stories');
+
+  listStatus = await apiWebStories('/status');
+
+  if (listStatus.status === 200) {
+    data.posts = listStatus.posts;
+  }
+
+  return data;
+}
+
 // Theme componenets
 const componentDefault = {
+  data: defaultData,
   header: {
     component_name: 'header',
     component_options: {
