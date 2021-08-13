@@ -1,12 +1,22 @@
-<% const content = components.content.component_options; %>
-
+<% if (data.posts !== null && data.posts.length > 0) { %>
 <div id="Content">
-  <% for (var story of content.stories) { %>
-  <div class="<%= 'Story ' + story.background %> hide">
-    <img class="Cover" src="<%= assets('/images/' + story.img.name + story.img.extension) %>" />
+  <% for (var post of data.posts) { %>
+  <div class="Story hide" <%= 'style="background: ' + post.post_options.background + ';"' %>>
+    <% if (post.post_options.image !== null) { %>
+    <div class="Cover">
+      <img src="<%= url('/upload/webstories/' + post.post_options.image) %>" />
+    </div>
+    <% } %>
     <div class="Content">
-      <p><%= story.content %></p>
+      <p><%= post.post_content %></p>
     </div>
   </div>
   <% } %>
 </div>
+<% } else { %>
+<div id="NoContent">
+  <div class="Story">
+    <p><%= trans('webstories.stories_empty') %> </p>
+  </div>
+</div>
+<% } %>

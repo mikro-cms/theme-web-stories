@@ -17,6 +17,13 @@ function WebStories(options) {
   // current index story
   let currentStory = 0;
 
+  // call next story with set timeout
+  let callNextStory = null;
+
+  // set timestamp on story running started and paused
+  let callNextStarted = null;
+  let callNextPaused = null;
+
   /**
    * Change story.
    *
@@ -36,13 +43,15 @@ function WebStories(options) {
     if (!isFirstIndex) {
       const previousIndex = index - 1;
 
-      options.loadbar.children[previousIndex].classList.remove('active');
-      options.loadbar.children[previousIndex].classList.add('passed');
+      if (previousIndex >= 0) {
+        options.loadbar.children[previousIndex].classList.remove('active');
+        options.loadbar.children[previousIndex].classList.add('passed');
 
-      const isLastIndex = index === totalStory;
+        const isLastIndex = index === totalStory;
 
-      if (!isLastIndex) {
-        options.content.children[previousIndex].classList.add('hide');
+        if (!isLastIndex) {
+          options.content.children[previousIndex].classList.add('hide');
+        }
       }
     }
   }
@@ -50,18 +59,47 @@ function WebStories(options) {
   /**
    * Loop story.
    *
+   * @param   number
    * @return  void
    */
-  function loopStory() {
-    window.setTimeout(function () {
+  function loopStory(timingElapsed = 0) {
+    callNextStarted = Date.now();
+    callNextStory = window.setTimeout(function () {
       currentStory += 1;
 
-      changeStory(currentStory)
+      changeStory(currentStory);
 
       if (currentStory < totalStory) {
         loopStory();
       }
-    }, timing);
+    }, (timing - timingElapsed));
+  }
+
+  /**
+   * Pause story.
+   *
+   * @return  void
+   */
+  function pauseStory() {
+    callNextPaused = Date.now();
+
+    window.clearTimeout(callNextStory);
+
+    callNextStory = null;
+
+    options.loadbar.children[currentStory].classList.add('pause');
+  }
+
+  /**
+   * Start current paused story.
+   *
+   * @return  void
+   */
+  function startStory() {
+    timingElapsed = callNextPaused - callNextStarted;
+
+    options.loadbar.children[currentStory].classList.remove('pause');
+    loopStory(timingElapsed);
   }
 
   /**
@@ -78,10 +116,17 @@ function WebStories(options) {
 
     options.loadbar.innerHTML = loadBarStories;
 
-
     // show first story and continue to next story
     changeStory(currentStory);
     loopStory();
+
+    // pause story on space pressed
+    window.addEventListener('keyup', function (e) {
+      if (e.code === 32) {
+        if (callNextStory === null) startStory();
+        else pauseStory();
+      }
+    })
   }
 
   // run story line

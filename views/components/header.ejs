@@ -2,7 +2,9 @@
 
 <div id="Header">
   <div class="Loadbar" id="Loadbar">
-    <!-- load bar -->
+    <% if (data.posts === null || data.posts.length < 1) { %>
+    <div class="passed"></div>
+    <% } %>
   </div>
   <div class="Logo">
     <img src="<%= assets('/images/' + header.logo.name + header.logo.extension) %>" />
