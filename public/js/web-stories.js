@@ -87,6 +87,7 @@ function WebStories(options) {
       changeStory(nextStory);
     } else {
       pauseStory(currentStory);
+      passedStory(currentStory);
     }
   }
 
@@ -107,9 +108,9 @@ function WebStories(options) {
     options.content.children[changedIndex].classList.remove('hide');
 
     if (currentStory < position) {
-      options.loadbar.children[currentStory].classList.add('passed');
+      passedStory(currentStory);
     } else {
-      options.loadbar.children[currentStory].classList.remove('passed');
+      unpassedStory(currentStory);
     }
 
     currentStory = position;
@@ -117,6 +118,30 @@ function WebStories(options) {
     if (currentStory < totalStory) {
       loopStory();
     }
+  }
+
+  /**
+   * Passed story.
+   *
+   * @param   number
+   * @return  void
+   */
+  function passedStory(position) {
+    options.loadbar.children[position].classList.remove('pause');
+    options.loadbar.children[position].classList.remove('active');
+    options.loadbar.children[position].classList.add('passed');
+  }
+
+  /**
+   * Unpassed story.
+   *
+   * @param   number
+   * @return  void
+   */
+  function unpassedStory(position) {
+    options.loadbar.children[position].classList.remove('pause');
+    options.loadbar.children[position].classList.remove('active');
+    options.loadbar.children[position].classList.remove('passed');
   }
 
   /**
