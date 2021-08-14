@@ -25,34 +25,93 @@ function WebStories(options) {
   let callNextPaused = null;
 
   /**
-   * Change story.
+   * Add stories navigation.
    *
-   * @param   index
    * @return  void
    */
-  function changeStory(index) {
-    const isCurrentExists = options.loadbar.children[index];
+  function addNavigation() {
+    let loadBarStories = '';
 
-    if (isCurrentExists) {
-      options.loadbar.children[index].classList.add('active');
-      options.content.children[index].classList.remove('hide');
+    for (var i = 0; i < totalStory; i++) {
+      loadBarStories += '<div></div>';
     }
 
-    const isFirstIndex = index === 0;
+    options.loadbar.innerHTML = loadBarStories;
 
-    if (!isFirstIndex) {
-      const previousIndex = index - 1;
+    const domPreviousBtn = document.createElement('div');
+    const domNextBtn = document.createElement('div');
 
-      if (previousIndex >= 0) {
-        options.loadbar.children[previousIndex].classList.remove('active');
-        options.loadbar.children[previousIndex].classList.add('passed');
+    domPreviousBtn.setAttribute('class', 'Previous');
+    domNextBtn.setAttribute('class', 'Next');
 
-        const isLastIndex = index === totalStory;
+    options.content.insertBefore(domPreviousBtn, options.content.children[0]);
+    options.content.appendChild(domNextBtn);
 
-        if (!isLastIndex) {
-          options.content.children[previousIndex].classList.add('hide');
-        }
-      }
+    domPreviousBtn.addEventListener('click', previousStory);
+    domNextBtn.addEventListener('click', nextStory);
+  }
+
+
+  /**
+   * Change to previous story.
+   *
+   * @return  void
+   */
+  function previousStory() {
+    clearLoopStory();
+
+    const isFirstStory = currentStory === 0;
+
+    if (!isFirstStory) {
+      const previousStory = currentStory - 1;
+
+      changeStory(previousStory);
+    }
+  }
+
+  /**
+   * Change to next story.
+   *
+   * @return  void
+   */
+  function nextStory() {
+    clearLoopStory();
+
+    const isLastStory = currentStory === (totalStory - 1);
+
+    if (!isLastStory) {
+      const nextStory = currentStory + 1;
+
+      changeStory(nextStory);
+    }
+  }
+
+  /**
+   * Change current story.
+   *
+   * @param   number
+   * @return  void
+   */
+  function changeStory(position) {
+    // add 1 because we have non story element at first content (previous btn)
+    let currentIndex = currentStory + 1;
+    let changedIndex = position + 1;
+
+    options.loadbar.children[currentStory].classList.remove('active');
+    options.content.children[currentIndex].classList.add('hide');
+    options.loadbar.children[position].classList.add('active');
+    options.content.children[changedIndex].classList.remove('hide');
+
+    if (currentStory < position) {
+      options.loadbar.children[currentStory].classList.add('passed');
+    } else {
+      options.loadbar.children[currentStory].classList.remove('passed');
+    }
+
+    currentStory = position;
+
+    if (currentStory < totalStory) {
+      loopStory();
     }
   }
 
@@ -65,14 +124,22 @@ function WebStories(options) {
   function loopStory(timingElapsed = 0) {
     callNextStarted = Date.now();
     callNextStory = window.setTimeout(function () {
-      currentStory += 1;
-
-      changeStory(currentStory);
-
-      if (currentStory < totalStory) {
-        loopStory();
-      }
+      nextStory();
     }, (timing - timingElapsed));
+  }
+
+  /**
+   * Clear loop story to cancel executed.
+   *
+   * @return  void
+   */
+  function clearLoopStory() {
+    if (callNextStory !== null) {
+      window.clearTimeout(callNextStory);
+
+      callNextStarted = null;
+      callNextStory = null;
+    }
   }
 
   /**
@@ -108,17 +175,10 @@ function WebStories(options) {
    * @return  void
    */
   function runStories() {
-    let loadBarStories = '';
-
-    for (var i = 0; i < totalStory; i++) {
-      loadBarStories += '<div></div>';
-    }
-
-    options.loadbar.innerHTML = loadBarStories;
+    addNavigation();
 
     // show first story and continue to next story
     changeStory(currentStory);
-    loopStory();
 
     // pause story on space pressed
     window.addEventListener('keyup', function (e) {
