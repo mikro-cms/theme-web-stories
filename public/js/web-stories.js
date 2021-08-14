@@ -52,7 +52,7 @@ function WebStories(options) {
 
     domPreviousBtn.addEventListener('click', previousStory);
     domNextBtn.addEventListener('click', nextStory);
-    domPauseBtn.addEventListener('click', pauseStory);
+    domPauseBtn.addEventListener('click', toggleLoopStory);
   }
 
 
@@ -202,6 +202,19 @@ function WebStories(options) {
   }
 
   /**
+   * Toggle loop story.
+   *
+   * @return  void
+   */
+  function toggleLoopStory() {
+    if (callNextStory === null) {
+      startStory();
+    } else {
+      pauseStory();
+    }
+  }
+
+  /**
    * Run stories.
    *
    * @return  void
@@ -215,8 +228,7 @@ function WebStories(options) {
     // pause story on space pressed
     window.addEventListener('keyup', function (e) {
       if (e.code === 'Space') {
-        if (callNextStory === null) startStory();
-        else pauseStory();
+        toggleLoopStory();
       }
     })
   }
