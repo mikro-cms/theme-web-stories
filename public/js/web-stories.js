@@ -66,6 +66,8 @@ function WebStories(options) {
       const previousStory = currentStory - 1;
 
       changeStory(previousStory);
+    } else {
+      pauseStory(currentStory);
     }
   }
 
@@ -83,6 +85,8 @@ function WebStories(options) {
       const nextStory = currentStory + 1;
 
       changeStory(nextStory);
+    } else {
+      pauseStory(currentStory);
     }
   }
 
