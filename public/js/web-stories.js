@@ -144,7 +144,6 @@ function WebStories(options) {
    */
   function unpassedStory(position) {
     options.loadbar.children[position].classList.remove('pause');
-    options.loadbar.children[position].classList.remove('active');
     options.loadbar.children[position].classList.remove('passed');
   }
 
