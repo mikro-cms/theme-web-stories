@@ -40,15 +40,19 @@ function WebStories(options) {
 
     const domPreviousBtn = document.createElement('div');
     const domNextBtn = document.createElement('div');
+    const domPauseBtn = document.createElement('div');
 
     domPreviousBtn.setAttribute('class', 'Previous');
     domNextBtn.setAttribute('class', 'Next');
+    domPauseBtn.setAttribute('class', 'Pause');
 
     options.content.insertBefore(domPreviousBtn, options.content.children[0]);
     options.content.appendChild(domNextBtn);
+    options.content.appendChild(domPauseBtn);
 
     domPreviousBtn.addEventListener('click', previousStory);
     domNextBtn.addEventListener('click', nextStory);
+    domPauseBtn.addEventListener('click', pauseStory);
   }
 
 

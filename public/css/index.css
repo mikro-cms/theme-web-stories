@@ -146,12 +146,17 @@ body {
   color: #FFFFFF;
 }
 #Content .Previous {
-  grid-column: 1 / span 60;
+  grid-column: 1 / span 40;
   grid-row: 1;
   z-index: 3;
 }
 #Content .Next {
-  grid-column: 61 / span 60;
+  grid-column: 81 / span 40;
+  grid-row: 1;
+  z-index: 3;
+}
+#Content .Pause {
+  grid-column: 41 / span 40;
   grid-row: 1;
   z-index: 3;
 }
