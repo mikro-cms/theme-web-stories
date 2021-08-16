@@ -27,6 +27,28 @@
   height: 100%;
 }
 
+#HomeBar {
+  display: flex;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 4rem;
+  background: #4F5B62;
+}
+#HomeBar h1 {
+  flex-grow: 1;
+  font-size: inherit;
+  color: #F0F0F0;
+  font-weight: normal;
+}
+#HomeBar button {
+  background: none;
+  color: #FFFFFF;
+  border: 0;
+}
+
 #HomeAddStatus {
   display: flex;
   padding-right: 1rem;
@@ -187,7 +209,7 @@
   border-bottom: 0.1rem solid #F0F0F0;
 }
 
-#Status {
+#Setting {
   display: flex;
   position: fixed;
   top: 0;
@@ -199,23 +221,18 @@
   height: 100%;
   background: #FFFFFF;
 }
-#BtnStatusClose {
+
+#Status {
   display: flex;
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  z-index: 1001;
-  justify-content: center;
-  align-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  background: #263238;
-  border: 0.1rem solid #333333;
-  border-radius: 100%;
-}
-#BtnStatusClose i {
-  font-size: 0.85rem;
-  color: #FFFFFF;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
 }
 #StatusContent {
   display: flex;
@@ -346,4 +363,123 @@
 #BtnStatusCustomImage i {
   font-size: 1.5rem;
   color: #FFFFFF;
+}
+
+.BtnClose {
+  display: flex;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1001;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #263238;
+  border: 0.1rem solid #333333;
+  border-radius: 100%;
+}
+.BtnClose i {
+  font-size: 0.85rem;
+  color: #FFFFFF;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+.Form label {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #333333;
+}
+.Form .FileProfile {
+  display: flex;
+  position: relative;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+}
+.Form .FileProfile input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
+  opacity: 0;
+}
+.Form .FileProfile img {
+  z-index: 1;
+  overflow: hidden;
+  width: 10rem;
+  height: 10rem;
+  background: #F0F0F0;
+  border: 0.1rem solid #F0F0F0;
+  border-radius: 100%;
+}
+.Form .Input,
+.Form .Select {
+  display: flex;
+  margin-top: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+.Form .Input input {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  width: 100%;
+  height: 2.5rem;
+  font-size: 1rem;
+  color: #333333;
+  border: 0.1rem solid #999999;
+  border-radius: 0.25rem;
+}
+.Form .Select select {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  width: 100%;
+  height: 2.5rem;
+  font-size: 1rem;
+  color: #333333;
+  border: 0.1rem solid #999999;
+  border-radius: 0.25rem;
+}
+.Form .Select select option {
+  font-size: 0.75rem;
+  color: #666666;
+}
+.Form .Action {
+  display: flex;
+  margin-top: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+.Form .Action button {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  width: auto;
+  height: 3rem;
+  background: #F0F0F0;
+  font-size: 0.75rem;
+  color: #333333;
+  border: 0.1rem solid #999999;
+  border-radius: 0.5rem;
 }

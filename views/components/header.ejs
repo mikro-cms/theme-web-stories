@@ -7,7 +7,7 @@
     <% } %>
   </div>
   <div class="Logo">
-    <img src="<%= assets('/images/' + header.logo.name + header.logo.extension) %>" />
+    <img src="<%= url('/upload/webstories/' + header.logo.name + header.logo.extension + '?v=' + header.logo.version) %>" />
   </div>
   <h1 class="Title"><%= header.title %></h1>
 </div>

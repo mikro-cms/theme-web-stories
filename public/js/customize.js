@@ -1,10 +1,11 @@
 // dom element
-var domHomeListStatus, domStatus, domStatusContent, domStatusImage, domStatusText,
-    domInputStatusCustomImage, domStatusCaption, domInputStatusCaption, domBtnStatusPost;
+var domSetting, domSettingForm, domFileProfile, domImgProfile, domInputTitle,
+    domSelectType, domHomeListStatus, domStatus, domStatusContent,
+    domStatusImage, domStatusText, domInputStatusCustomImage, domStatusCaption,
+    domInputStatusCaption, domBtnStatusPost;
 
 // status placholder
 var placeholder, placeholderText;
-
 
 // petch configuration
 var petch = new Petch({
@@ -42,14 +43,22 @@ var statusOptions = {
 document.addEventListener('DOMContentLoaded', function () {
   domHomeListStatus = document.getElementById('HomeListStatus');
 
+  const domBtnHomeSetting = document.getElementById('BtnHomeSetting');
   const domBtnHomeTypeLast = document.getElementById('BtnHomeTypeLast');
   const domBtnHomeTypeArchived = document.getElementById('BtnHomeTypeArchived');
   const domBtnHomeAddStatus = document.getElementById('BtnHomeAddStatus');
 
+  domBtnHomeSetting.addEventListener('click', toggleSetting);
   domBtnHomeTypeLast.addEventListener('click', loadLastStatus);
   domBtnHomeTypeArchived.addEventListener('click', loadArchivedStatus);
   domBtnHomeAddStatus.addEventListener('click', toggleStatus);
 
+  domSetting = document.getElementById('Setting');
+  domFormSetting = document.getElementById('SettingForm');
+  domFileProfile = document.getElementById('FileProfile');
+  domImgProfile = document.getElementById('ImgProfile');
+  domInputTitle = document.getElementById('InputTitle');
+  domSelectType = document.getElementById('SelectType');
   domStatus = document.getElementById('Status');
   domStatusContent = document.getElementById('StatusContent');
   domStatusImage = document.getElementById('StatusImage');
@@ -60,9 +69,13 @@ document.addEventListener('DOMContentLoaded', function () {
   domInputStatusCaption = document.getElementById('InputStatusCaption');
   domBtnStatusPost = document.getElementById('BtnStatusPost');
 
+  const domBtnSettingClose = document.getElementById('BtnSettingClose');
   const domBtnStatusClose = document.getElementById('BtnStatusClose');
 
+  domFormSetting.addEventListener('submit', saveSetting);
+  domBtnSettingClose.addEventListener('click', toggleSetting);
   domBtnStatusClose.addEventListener('click', toggleStatus);
+  domFileProfile.addEventListener('change', selectFileImage);
   domStatusText.addEventListener('keydown', toggleType);
   domStatusText.addEventListener('keyup', toggleType);
   domStatusText.addEventListener('blur', toggleType);
@@ -80,6 +93,85 @@ document.addEventListener('DOMContentLoaded', function () {
 
   loadLastStatus();
 });
+
+/**
+ * Toggle setting.
+ *
+ * @return  void
+ */
+function toggleSetting() {
+  domSetting.style.display = domSetting.style.display === 'none' ? 'flex' : 'none';
+
+  if (domSetting.style.display === 'flex') {
+    loadSetting();
+  }
+}
+
+/**
+ * Load setting.
+ *
+ * @return  void
+ */
+function loadSetting() {
+  petch.get(`setting?page_id=${ENV.pageId}`)
+    .then(function (res) {
+      if (res.ok) {
+        return res.json();
+      } else {
+        window.alert(res.statusText)
+      }
+    })
+    .then(function (data) {
+      domImgProfile.src = `${ENV.publicUrl}/upload/webstories/${data.setting.logo.name + data.setting.logo.extension}?v=${data.setting.logo.version}`;
+      domInputTitle.value = data.setting.title;
+      domSelectType.value = data.setting.type;
+    });
+}
+
+/**
+ * Select file image.
+ *
+ * @param   event
+ * @return  void
+ */
+function selectFileImage(e) {
+  const reader = new FileReader();
+
+  reader.onload = function (e) {
+    domImgProfile.src = e.target.result;
+  };
+
+  reader.readAsDataURL(e.target.files[0]);
+}
+
+/**
+ * Save setting.
+ *
+ * @param   event
+ * @return  void
+ */
+function saveSetting(e) {
+  if (e.preventDefault) e.preventDefault();
+
+  petch.uploadData('setting', {
+    body: {
+      page_id: ENV.pageId,
+      title: domInputTitle.value,
+      logo: domFileProfile.files[0],
+      type: domSelectType.value
+    }
+  })
+  .then(function (res) {
+    if (res.ok) {
+      return res.json();
+    } else {
+      window.alert(res.statusText);
+    }
+  })
+  .then(function (data) {
+    window.alert(data.message);
+  })
+}
 
 /**
  * Load available last status.

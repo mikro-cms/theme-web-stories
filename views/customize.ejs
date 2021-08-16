@@ -11,10 +11,15 @@
 <body>
   <div id="Wrapper">
     <div id="Home">
+      <div id="HomeBar">
+        <h1>Webstories</h1>
+        <button class="material-icons" id="BtnHomeSetting">settings</button>
+      </div>
+
       <div id="HomeAddStatus">
         <div class="Photo">
           <img src="">
-          <button class="material-icons" id="BtnHomeAddStatus">add</button>
+          <button class="material-icons" id="BtnHomeAddStatus" type="button">add</button>
         </div>
         <h1 class="Title">
           <b>My Status</b>
@@ -38,8 +43,34 @@
       </div>
     </div>
 
+    <div id="Setting" style="display: none;">
+      <button class="BtnClose" id="BtnSettingClose">
+        <i class="material-icons">close</i>
+      </button>
+      <form class="Form" id="SettingForm" action="/" method="POST">
+        <div class="FileProfile">
+          <input id="FileProfile" type="file" name="logo" />
+          <img id="ImgProfile" src="">
+        </div>
+        <div class="Input">
+          <label for="InputTitle">Story title</label>
+          <input id="InputTitle" type="text">
+        </div>
+        <div class="Select">
+          <label for="SelectType">Story to show</label>
+          <select id="SelectType">
+            <option value="lasted">Lasted</option>
+            <option value="archived">Archived</option>
+          </select>
+        </div>
+        <div class="Action">
+          <button type="submit">SAVE</button>
+        </div>
+      </form>
+    </div>
+
     <div id="Status" style="display: none;">
-      <button id="BtnStatusClose">
+      <button class="BtnClose" id="BtnStatusClose">
         <i class="material-icons">close</i>
       </button>
       <div id="StatusContent">

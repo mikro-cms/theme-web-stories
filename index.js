@@ -1,10 +1,13 @@
 // Theme data
 const defaultData = async function () {
+  const header = this.res.locals.components.header.component_options;
+  const content = this.res.locals.components.content.component_options;
+
   let data = {
     posts: null
   };
 
-  this.req.query.type = 'lasted';
+  this.req.query.type = content.type;
 
   let apiWebStories = this.api('@mikro-cms/api-web-stories');
 
@@ -35,7 +38,7 @@ const componentDefault = {
   content: {
     component_name: 'content',
     component_options: {
-      // no options
+      type: 'lasted'
     }
   },
   footer: {
