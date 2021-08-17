@@ -1,7 +1,7 @@
 <% if (data.posts !== null && data.posts.length > 0) { %>
 <div id="Content">
   <% for (var post of data.posts) { %>
-  <div class="Story hide" <%= 'style="background: ' + post.post_options.background + ';"' %>>
+  <div class="Story hide" style="<%= 'background: ' + post.post_options.background + ';' %>">
     <% if (post.post_options.image !== null) { %>
     <div class="Cover">
       <img src="<%= url('/upload/webstories/' + post.post_options.image) %>" />
