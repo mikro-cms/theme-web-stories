@@ -4,7 +4,7 @@
   <div class="Story hide" style="<%= 'background: ' + post.post_options.background + ';' %>">
     <% if (post.post_options.image !== null) { %>
     <div class="Cover">
-      <img src="<%= url('/upload/webstories/' + post.post_options.image) %>" />
+      <img src="<%= url('/upload/webstories/' + post.post_options.image) %>" loading="lazy" />
     </div>
     <% } %>
     <div class="Content">

@@ -5,6 +5,7 @@
  * @return  void
  */
 function WebStories(options) {
+  if (!options.loading instanceof Element) return;
   if (!options.loadbar instanceof Element) return;
   if (!options.content instanceof Element) return;
 
@@ -108,7 +109,6 @@ function WebStories(options) {
 
     options.loadbar.children[currentStory].classList.remove('active');
     options.content.children[currentIndex].classList.add('hide');
-    options.loadbar.children[position].classList.add('active');
     options.content.children[changedIndex].classList.remove('hide');
 
     if (currentStory < position) {
@@ -116,6 +116,29 @@ function WebStories(options) {
     } else {
       unpassedStory(currentStory);
     }
+
+    // show loading status if there have not completed load image
+    const domCover = options.content.children[changedIndex].children[0];
+    const isCover = domCover.classList.value === 'Cover';
+
+    if (isCover) {
+      const domCoverImage = domCover.children[0];
+
+      if (!domCoverImage.complete) {
+        options.loading.classList.remove('hide');
+
+        domCoverImage.onload = function () {
+          changeStory(position);
+        }
+
+        return;
+      } else {
+        options.loading.classList.add('hide');
+      }
+    }
+
+    // add active status to loadbar
+    options.loadbar.children[position].classList.add('active');
 
     currentStory = position;
 

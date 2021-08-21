@@ -1,5 +1,9 @@
 <% const header = components.header.component_options; %>
 
+<div class="hide" id="Loading">
+  <img src="<%= url('/upload/webstories/' + header.logo.name + header.logo.extension + '?v=' + header.logo.version) %>" />
+</div>
+
 <div id="Header">
   <div class="Loadbar" id="Loadbar">
     <% if (data.posts === null || data.posts.length < 1) { %>
